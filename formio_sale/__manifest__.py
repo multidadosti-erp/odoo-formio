@@ -17,6 +17,7 @@
         'views/sale_views.xml',
     ],
     'application': True,
+    'installable': False,
     'images': [
         'static/description/banner.png',
     ],
