@@ -20,6 +20,7 @@
         # 'views/website_formio_snippets.xml',
     ],
     'application': True,
+    'installable': False,
     'images': [
         'static/description/banner.png',
     ],
