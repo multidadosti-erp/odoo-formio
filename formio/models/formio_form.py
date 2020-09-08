@@ -194,12 +194,12 @@ class Form(models.Model):
 
             # public
             form.public_access = form._public_access()
-            
+
     def _public_access(self):
         if self.public_share and self.public_access_date_from:
             now = fields.Datetime.now()
             expire_on = self.public_access_date_from + self._interval_types[self.public_access_interval_type](self.public_access_interval_number)
-            
+
             if self.public_access_interval_number == 0:
                 return False
             elif self.public_access_date_from > now:
@@ -340,7 +340,7 @@ class Form(models.Model):
         self.public_share = self.builder_id.public
         self.public_access_interval_number = self.builder_id.public_access_interval_number
         self.public_access_interval_type = self.builder_id.public_access_interval_type
-        
+
         if self.builder_id.public:
             self.public_access_date_from = fields.Datetime.now()
 

@@ -38,26 +38,26 @@ See LICENSE file for full copyright and licensing details.
             <div class="formio_header mb-4">
                 <div class="row">
                     <div t-if="o.submission_data" class="col-6">
-                        <strong>Submission by:</strong> <span t-field="o.submission_partner_name"/>
+                        <strong>Respondido por:</strong> <span t-field="o.submission_partner_name"/>
                     </div>
                     <div t-if="o.submission_data" class="col-4">
                         <strong>Date:</strong> <span t-field="o.submission_date"/>
                     </div>
                     <div class="col-2">
                         <t t-if="o.state == 'PENDING'">
-                            <span t-attf-class="badge mb-1 badge-pill badge-info">State: <strong><t t-esc="o.display_state"/></strong></span>
+                            <span t-attf-class="badge mb-1 badge-pill badge-info">Estado: <strong><t t-esc="o.display_state"/></strong></span>
                         </t>
                         <t t-elif="o.state == 'DRAFT'">
-                            <span t-attf-class="badge mb-1 badge-pill badge-warning">State: <span t-esc="o.display_state"/></span>
+                            <span t-attf-class="badge mb-1 badge-pill badge-warning">Estado: <span t-esc="o.display_state"/></span>
                         </t>
                         <t t-elif="o.state == 'COMPLETE'">
-                            <span t-attf-class="badge mb-1 badge-pill badge-success">State: <strong><t t-esc="o.display_state"/></strong></span>
+                            <span t-attf-class="badge mb-1 badge-pill badge-success">Estado: <strong><t t-esc="o.display_state"/></strong></span>
                         </t>
                         <t t-elif="o.state == 'CANCEL'">
-                            <span t-attf-class="badge mb-1 badge-pill badge-dark">State: <strong><t t-esc="o.display_state"/></strong></span>
+                            <span t-attf-class="badge mb-1 badge-pill badge-dark">Estado: <strong><t t-esc="o.display_state"/></strong></span>
                         </t>
                         <t t-else="">
-                            <span t-attf-class="badge mb-1 badge-pill badge-light">State: <strong><t t-esc="o.display_state"/></strong></span>
+                            <span t-attf-class="badge mb-1 badge-pill badge-light">Estado: <strong><t t-esc="o.display_state"/></strong></span>
                         </t>
                     </div>
                 </div>
@@ -65,7 +65,7 @@ See LICENSE file for full copyright and licensing details.
                     <div class="row">
                         <div class="col-6">
                             <t t-if="o.assigned_partner_id">
-                                <strong>Assigned:</strong> <span t-esc="o.assigned_partner_name"/>
+                                <strong>Atribuído a:</strong> <span t-esc="o.assigned_partner_name"/>
                             </t>
                         </div>
                         <div class="col-6">

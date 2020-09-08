@@ -55,7 +55,7 @@ class FormioController(http.Controller):
     def builder_schema(self, builder_id, **kwargs):
         if not request.env.user.has_group('formio.group_formio_admin'):
             return
-        
+
         builder = request.env['formio.builder'].browse(builder_id)
         if builder and builder.schema:
             return builder.schema
@@ -66,10 +66,10 @@ class FormioController(http.Controller):
     def builder_save(self, builder, **post):
         if not request.env.user.has_group('formio.group_formio_admin'):
             return
-        
+
         if not 'builder_id' in post or int(post['builder_id']) != builder.id:
             return
-        
+
         schema = json.dumps(post['schema'])
         builder.write({'schema': schema})
 
@@ -161,7 +161,7 @@ class FormioController(http.Controller):
         if not form:
             # TODO raise or set exception (in JSON resonse) ?
             return
-        
+
         vals = {
             'submission_data': json.dumps(post['data']),
             'submission_user_id': request.env.user.id,
@@ -197,7 +197,7 @@ class FormioController(http.Controller):
         form = self._get_form(uuid, 'read')
         if not form:
             return
-        
+
         args = request.httprequest.args
 
         model = args.get('model')
