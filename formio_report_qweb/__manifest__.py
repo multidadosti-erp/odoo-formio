@@ -19,7 +19,7 @@
         'views/formio_builder_report_views.xml'
     ],
     'application': True,
-    'installable': False,
+    'installable': True,
     'images': [
         'static/description/banner.png',
     ],

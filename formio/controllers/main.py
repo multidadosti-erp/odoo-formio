@@ -55,7 +55,6 @@ class FormioController(http.Controller):
     def builder_schema(self, builder_id, **kwargs):
         if not request.env.user.has_group('formio.group_formio_admin'):
             return
-
         builder = request.env['formio.builder'].browse(builder_id)
         if builder and builder.schema:
             return builder.schema
