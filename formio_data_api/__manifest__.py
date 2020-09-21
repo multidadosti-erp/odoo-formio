@@ -16,7 +16,7 @@
         'python': ['formiodata'],
     },
     'application': False,
-    'installable': False,
+    'installable': True,
     'images': [
         'static/description/banner.png',
     ],

@@ -41,7 +41,7 @@ See LICENSE file for full copyright and licensing details.
                         <strong>Respondido por:</strong> <span t-field="o.submission_partner_name"/>
                     </div>
                     <div t-if="o.submission_data" class="col-4">
-                        <strong>Date:</strong> <span t-field="o.submission_date"/>
+                        <strong>Data:</strong> <span t-field="o.submission_date"/>
                     </div>
                     <div class="col-2">
                         <t t-if="o.state == 'PENDING'">

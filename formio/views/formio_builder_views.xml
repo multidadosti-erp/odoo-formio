@@ -67,7 +67,7 @@ See LICENSE file for full licensing details. -->
                     <div class="oe_button_box" name="button_box">
                         <button name="action_view_formio" type="object" string="Form Builder"
                                 groups="formio.group_formio_admin"
-                                class="oe_stat_button" icon="fa-rocket"/>
+                                class="oe_stat_button" icon="fa-file-text-o"/>
                     </div>
                     <label for="title" class="oe_edit_only"/>
                     <h1><field name="title" placeholder="Insert a meaningful title here"/></h1>

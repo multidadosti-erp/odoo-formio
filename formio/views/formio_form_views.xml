@@ -151,7 +151,7 @@ See LICENSE file for full licensing details. -->
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button name="action_view_formio" type="object" string="Form"
-                                class="oe_stat_button" icon="fa-rocket" aria-label="Form"/>
+                                class="oe_stat_button" icon="fa-file-text-o" aria-label="Form"/>
                         <button name="action_open_res_act_window" type="object" string="Source Link"
                                 attrs="{'invisible': ['|', ('res_id', '=', False), ('res_id', '=', 0)]}"
                                 class="oe_stat_button" icon="fa-link" aria-label="Resource">
@@ -271,16 +271,16 @@ See LICENSE file for full licensing details. -->
         <field name="view_mode">tree,kanban,form,formio_form</field>
     </record>
 
-    <record id="action_formio_form_view_kanban" model="ir.actions.act_window.view">
-        <field name="sequence" eval="0"/>
-        <field name="view_mode">kanban</field>
-        <field name="view_id" ref="formio.view_formio_form_kanban"/>
-        <field name="act_window_id" ref="action_formio_form"/>
-    </record>
     <record id="action_formio_form_view_tree" model="ir.actions.act_window.view">
-        <field name="sequence" eval="1"/>
+        <field name="sequence" eval="0"/>
         <field name="view_mode">tree</field>
         <field name="view_id" ref="formio.view_formio_form_tree"/>
+        <field name="act_window_id" ref="action_formio_form"/>
+    </record>
+    <record id="action_formio_form_view_kanban" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="formio.view_formio_form_kanban"/>
         <field name="act_window_id" ref="action_formio_form"/>
     </record>
     <record id="action_formio_form_view_form" model="ir.actions.act_window.view">
