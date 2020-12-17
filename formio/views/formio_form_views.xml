@@ -11,9 +11,9 @@ See LICENSE file for full licensing details. -->
                   decoration-info="state in ('DRAFT')"
                   decoration-success="state in ('COMPLETE')"
                   decoration-muted="state in ('CANCEL')">
-                <field name="id"/>
-                <field name="uuid"/>
-                <field name="sequence"/>
+                <field name="id" invisible="1"/>
+                <field name="uuid" invisible="1"/>
+                <field name="sequence" invisible="1"/>
                 <field name="title"/>
                 <field name="builder_id"/>
                 <field name="user_id"/>
@@ -21,12 +21,12 @@ See LICENSE file for full licensing details. -->
                 <field name="submission_date"/>
                 <field name="state"/>
                 <button string="Form" class="btn-sm btn-secondary" name="action_view_formio" type="object"/>
-                <field name="portal_share"/>
-                <field name="public_share"/>
-                <field name="public_access"/>
-                <field name="public_create"/>
+                <field name="portal_share" invisible="1"/>
+                <field name="public_share" invisible="1"/>
+                <field name="public_access" invisible="1"/>
+                <field name="public_create" invisible="1"/>
                 <field name="res_model_name" string="Resource Type"/>
-                <field name="initial_res_model_name" string="Resource Type #1"/>
+                <field name="initial_res_model_name" string="Resource Type #1" invisible="1"/>
                 <field name="res_name"/>
                 <field name="res_partner_id"/>
                 <field name="write_date"/>
@@ -86,7 +86,7 @@ See LICENSE file for full licensing details. -->
                                             </div>
                                             <div>
                                                 <div>
-                                                    <span>State: <field name="state"/></span>
+                                                    <span>Status: <field name="state"/></span>
                                                 </div>
                                             </div>
                                         </t>
@@ -262,7 +262,7 @@ See LICENSE file for full licensing details. -->
             </search>
         </field>
     </record>
-    
+
     <!-- actions -->
     <record id="action_formio_form" model="ir.actions.act_window">
         <field name="name">Forms</field>
