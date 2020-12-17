@@ -21,16 +21,16 @@
                         </li>
                         <li class="builder_state">
                             <t t-if="builder.state == 'DRAFT'">
-                                <span t-attf-class="badge mb-1 badge-pill badge-warning">State: <strong><t t-esc="builder.display_state"/></strong></span>
+                                <span t-attf-class="badge mb-1 badge-pill badge-warning">Status: <strong><t t-esc="builder.display_state"/></strong></span>
                             </t>
                             <t t-elif="builder.state == 'CURRENT'">
-                                <span t-attf-class="badge mb-1 badge-pill badge-success">State: <strong><t t-esc="builder.display_state"/></strong></span>
+                                <span t-attf-class="badge mb-1 badge-pill badge-success">Status: <strong><t t-esc="builder.display_state"/></strong></span>
                             </t>
                             <t t-elif="builder.state == 'OBSOLETE'">
-                                <span t-attf-class="badge mb-1 badge-pill badge-dark">State: <strong><t t-esc="builder.display_state"/></strong></span>
+                                <span t-attf-class="badge mb-1 badge-pill badge-dark">Status: <strong><t t-esc="builder.display_state"/></strong></span>
                             </t>
                             <t t-else="">
-                                <span t-attf-class="badge mb-1 badge-pill badge-light">State: <strong><t t-esc="builder.display_state"/></strong></span>
+                                <span t-attf-class="badge mb-1 badge-pill badge-light">Status: <strong><t t-esc="builder.display_state"/></strong></span>
                             </t>
                         </li>
                     </ul>
