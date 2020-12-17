@@ -1,16 +1,15 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* formio_report_qweb
+#	* formio_report_qweb
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-31 09:38+0000\n"
-"PO-Revision-Date: 2020-12-31 10:40+0100\n"
+"POT-Creation-Date: 2020-12-17 21:01+0000\n"
+"PO-Revision-Date: 2020-12-17 21:01+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,13 +18,12 @@ msgstr ""
 #. module: formio_report_qweb
 #: model_terms:ir.ui.view,arch_db:formio_report_qweb.component_not_implemented
 msgid "<small>WARNING: component not implemented (showing raw data)</small>"
-msgstr ""
-"<small>AVISO: componente não implementado (mostrando dados brutos)</small>"
+msgstr "<small>AVISO: componente não implementado (mostrando dados brutos)</small>"
 
 #. module: formio_report_qweb
 #: model_terms:ir.ui.view,arch_db:formio_report_qweb.report_formio_form_template
 msgid "<strong>Assigned:</strong>"
-msgstr "<strong>Atribuídas:</strong>"
+msgstr "<strong>Atribuído:</strong>"
 
 #. module: formio_report_qweb
 #: model_terms:ir.ui.view,arch_db:formio_report_qweb.report_formio_form_template
@@ -40,7 +38,7 @@ msgstr ""
 #. module: formio_report_qweb
 #: model_terms:ir.ui.view,arch_db:formio_report_qweb.report_formio_form_template
 msgid "<strong>Submission by:</strong>"
-msgstr "<strong>Submissão por:</strong>"
+msgstr "<strong>Preenchido por:</strong>"
 
 #. module: formio_report_qweb
 #: model:ir.model.fields,field_description:formio_report_qweb.field_formio_builder_report__create_uid
@@ -91,7 +89,7 @@ msgstr "Formulário Form.io"
 #. module: formio_report_qweb
 #: model:ir.model.fields,field_description:formio_report_qweb.field_formio_builder_report__id
 msgid "ID"
-msgstr ""
+msgstr "Id."
 
 #. module: formio_report_qweb
 #: model:ir.model.fields,field_description:formio_report_qweb.field_formio_builder_report____last_update
@@ -143,4 +141,4 @@ msgstr "Mostrar componentes não implementados"
 #. module: formio_report_qweb
 #: model_terms:ir.ui.view,arch_db:formio_report_qweb.report_formio_form_template
 msgid "State:"
-msgstr "Estado:"
+msgstr "Status:"
