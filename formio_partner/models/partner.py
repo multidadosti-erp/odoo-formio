@@ -17,9 +17,12 @@ class ResPartner(models.Model):
             r.formio_forms_count = len(r.formio_forms)
 
     def _compute_formio_this_model_id(self):
-        self.ensure_one()
+        # Multidados
+        # self.ensure_one()
         model_id = self.env.ref('base.model_res_partner').id
-        self.formio_this_model_id = model_id
+        for record in self:
+            if record.formio_forms:
+                record.formio_this_model_id = model_id
 
     @api.multi
     def write(self, vals):
