@@ -22,9 +22,8 @@ class Form(models.Model):
             id=res_id,
             model='project.project',
             action=action.id)
-        res_model_name = builder.res_model_id.name
 
-        vals['project_project_id'] = res_id
+        vals['project_id'] = res_id
         vals['res_partner_id'] = project.partner_id.id
         vals['res_act_window_url'] = url
         vals['res_name'] = project.name
