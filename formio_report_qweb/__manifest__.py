@@ -10,8 +10,13 @@
     'live_test_url': 'https://demo13.novacode.nl',
     'license': 'LGPL-3',
     'category': 'Extra Tools',
-    'depends': ['formio', 'formio_data_api'],
+    'depends': [
+        'formio',
+        'formio_data_api',
+        'report_qweb_element_page_visibility',
+    ],
     'data': [
+        'report/report_template_layouts.xml',
         'report/formio_form_report_views.xml',
         'report/report_formio_form.xml',
         'report/report_formio_form_components.xml',
