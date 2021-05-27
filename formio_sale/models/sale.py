@@ -25,10 +25,13 @@ class SaleOrder(models.Model):
         # Simpler to maintain and less risk with extending, than
         # computed field(s) in the formio.form object.
         res = super(SaleOrder, self).write(vals)
-        if self.formio_forms:
-            form_vals = self._prepare_write_formio_form_vals(vals)
-            if form_vals:
-                self.formio_forms.write(form_vals)
+
+        for rec in self:
+            if rec.formio_forms:
+                form_vals = rec._prepare_write_formio_form_vals(vals)
+                if form_vals:
+                    rec.formio_forms.write(form_vals)
+
         return res
 
     def _prepare_write_formio_form_vals(self, vals):
