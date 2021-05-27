@@ -12,6 +12,7 @@
     'category': 'Sales',
     'depends': ['sale_management', 'formio', 'formio_data_api'],
     'data': [
+        'security/ir_model_access.xml',
         'data/formio_sale_data.xml',
         'data/formio_demo_data.xml',
         'views/formio_form_views.xml',
