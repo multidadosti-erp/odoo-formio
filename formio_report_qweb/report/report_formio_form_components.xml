@@ -79,7 +79,7 @@ See LICENSE file for full copyright and licensing details.
     </template>
 
     <template id="component_label">
-        <t t-if="nolabel">
+        <t t-if="nolabel or component.hideLabel">
         </t>
         <t t-elif="component.required">
             <t t-raw="component.label"/> *

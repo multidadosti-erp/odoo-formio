@@ -2176,12 +2176,12 @@ msgstr ""
 #: model:ir.model.fields,help:formio.field_formio_builder__formio_version_name
 #: model:ir.model.fields,help:formio.field_formio_version__name
 msgid "formio release/version."
-msgstr ""
+msgstr "Lançamento/Versão do Formio."
 
 #. module: formio
 #: model:ir.model.fields,field_description:formio.field_formio_builder__formio_version_name
 msgid "formio version"
-msgstr ""
+msgstr "Versão Formio"
 
 #. module: formio
 #: model_terms:ir.ui.view,arch_db:formio.res_config_settings_view_form
