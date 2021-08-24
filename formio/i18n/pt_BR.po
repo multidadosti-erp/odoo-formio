@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-02 17:01+0000\n"
-"PO-Revision-Date: 2021-08-02 17:01+0000\n"
+"POT-Creation-Date: 2021-08-24 15:13+0000\n"
+"PO-Revision-Date: 2021-08-24 15:13+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -129,7 +129,7 @@ msgstr "        IMPORTANTE:\n"
 msgid "<br/>\n"
 "                                <i class=\"fa fa-info-circle\" title=\"info\"/><strong> Integration / Resource settings</strong> - Enables integration of Form and ERP/Odoo objects.<br/>"
 msgstr "<br/>\n"
-"                                <i class=\"fa fa-info-circle\" title=\"info\"/><strong> Integração / Configuração de Recursos</strong> - Permite a integração de objetos Form e MultiERP.<br/>"
+"                                <i class=\"fa fa-info-circle\" title=\"info\"/><strong> Integração / Configuração de Recursos</strong> - Permite a integração de objetos Form.io e MultiERP.<br/>"
 
 #. module: formio
 #: model_terms:ir.ui.view,arch_db:formio.view_formio_form_kanban
@@ -312,12 +312,8 @@ msgstr "Usuário de Atividade"
 
 #. module: formio
 #: model_terms:ir.ui.view,arch_db:formio.res_config_settings_view_form
-msgid ""
-"Add additional CSS files to be included for every new installed formio.js "
-"client/library."
-msgstr ""
-"Adicione arquivos CSS adicionais a serem incluídos para cada novo cliente/"
-"biblioteca formio.js instalado."
+msgid "Add additional CSS files to be included for every new installed formio client/library."
+msgstr "Adicione arquivos CSS adicionais a serem incluídos para cada novo cliente/biblioteca Form.io instalado."
 
 #. module: formio
 #: model:ir.model.fields,help:formio.field_formio_builder__component_partner_add_follower
@@ -841,84 +837,66 @@ msgstr "Formulário de Vinculação ao Parceiro"
 msgid "Form was public created"
 msgstr "O formulário foi criado publicamente"
 
-#: model:ir.module.category,description:formio.module_category_formio
-#: model:ir.module.category,name:formio.module_category_formio
-#: model:ir.ui.menu,name:formio.menu_formio_root
-#: model_terms:ir.ui.view,arch_db:formio.view_formio_builder_form
-#: model_terms:ir.ui.view,arch_db:formio.view_formio_builder_formio
-#: model_terms:ir.ui.view,arch_db:formio.view_formio_form_formio
-msgid "Forms"
-msgstr "Formulários"
-
-#: selection:ir.actions.act_window.view,view_mode:0
-#: model_terms:ir.ui.view,arch_db:formio.view_formio_builder_formio
-#: selection:ir.ui.view,type:0
-msgid "formio Builder"
-msgstr "Construtor de Formulários"
-
 #. module: formio
-#: model:ir.model.fields,field_description:formio.field_res_config_settings__formio_default_builder_js_options
-msgid "formio.js builder options"
-msgstr "formio.js Opções do Construtor de Formulários"
-
-#. module: formio
-#: model:ir.model.fields,field_description:formio.field_res_config_settings__formio_default_builder_js_options_id
-msgid "formio.js builder options ID"
-msgstr "formio.js ID Opções do Construtor de Formulários"
-
-#. module: formio
-#: model:ir.model.fields,field_description:formio.field_formio_builder__formio_css_assets
-msgid "formio.js CSS"
+#: model:ir.model,name:formio.model_formio_default_asset_css
+msgid "Formio Asset CSS"
 msgstr ""
 
-msgid "formio.js CSS assets"
-msgstr "Recursos CSS formio.js"
+#. module: formio
+#: model:ir.model,name:formio.model_formio_builder_js_options
+msgid "Formio Builder JavaScript Options"
+msgstr "Opções de JavaScript do Formio Builder"
 
 #. module: formio
-#: model:ir.model.fields,field_description:formio.field_formio_builder__formio_js_options
-msgid "formio.js Javascript Options"
-msgstr "Opções de Javascript formio.js"
+#: model:ir.model,name:formio.model_formio_builder_translation
+msgid "Formio Builder Translation"
+msgstr "Tradução do Formio Builder"
 
 #. module: formio
-#: model:ir.model.fields,field_description:formio.field_formio_builder__formio_js_options_id
-msgid "formio.js Javascript Options template"
-msgstr "Modelo de opções de Javascript formio.js"
+#: model:ir.model.fields,field_description:formio.field_ir_attachment__formio_form_id
+msgid "Formio Form"
+msgstr "Formulário Formio"
 
 #. module: formio
-#: model:ir.model.fields,field_description:formio.field_formio_builder__formio_version_id
-#: model:ir.model.fields,field_description:formio.field_res_config_settings__formio_default_version_id
-msgid "formio.js version"
-msgstr "Versão do formio.js"
-
-#. module: formio
-#: model:ir.model.fields,help:formio.field_formio_builder__formio_version_name
-#: model:ir.model.fields,help:formio.field_formio_version__name
-msgid "formio.js release/version."
-msgstr "Versão de Lançamento do formio.js"
-
-#. module: formio
-#: model:ir.model.fields,field_description:formio.field_formio_builder__formio_version_name
-msgid "formio.js version"
-msgstr "Versão formio.js"
-
-#. module: formio
-#. openerp-web
-#: code:addons/formio/static/src/xml/formio.xml:20
-#, python-format
-msgid "formio.js version:"
-msgstr "Versão formio.js:"
+#: model:ir.model,name:formio.model_formio_res_model
+msgid "Formio Resource Model"
+msgstr "Modelo de Recursos Formio"
 
 #. module: formio
 #: model:ir.model,name:formio.model_formio_version
 #: model:ir.model.fields,field_description:formio.field_formio_version_github_tag__formio_version_id
-msgid "formio.js Version"
-msgstr "Versão formio.js"
+msgid "Formio Version"
+msgstr "Versão Formio"
 
-#: model:ir.actions.server,name:formio.ir_cron_formio_version_github_tag_check_and_register_ir_actions_server
-#: model:ir.cron,cron_name:formio.ir_cron_formio_version_github_tag_check_and_register
-#: model:ir.cron,name:formio.ir_cron_formio_version_github_tag_check_and_register
-msgid "Forms: Check and register new Versions (GitHub tags)"
-msgstr "Formulários: Verifique e registre novas versões (tags GitHub)"
+#. module: formio
+#: model:ir.model,name:formio.model_formio_version_asset
+msgid "Formio Version Asset"
+msgstr "Ativo de versão do Formio"
+
+#. module: formio
+#: model:ir.model,name:formio.model_formio_version_github_checker_wizard
+msgid "Formio Version GitHub Checker Wizard"
+msgstr "Assistente do Verificador de GitHub da versão do Formio"
+
+#. module: formio
+#: model:ir.model,name:formio.model_formio_version_github_tag
+msgid "Formio Version GitHub Tag"
+msgstr "Tag GitHub da versão do Formio"
+
+#. module: formio
+#: model:ir.model,name:formio.model_formio_version_github_tag_available
+msgid "Formio Version GitHub Tag Available"
+msgstr "Tag do GitHub da versão do Formio disponível"
+
+#. module: formio
+#: model:ir.model,name:formio.model_formio_translation
+msgid "Formio Version Translation"
+msgstr "Tradução da versão do Formio"
+
+#. module: formio
+#: model:ir.model,name:formio.model_formio_translation_source
+msgid "Formio Version Translation Source"
+msgstr "Fonte de tradução da versão do Formio"
 
 #. module: formio
 #: model:ir.actions.act_window,name:formio.action_formio_form
@@ -943,7 +921,7 @@ msgstr "Permissões de Formulários"
 #: model:ir.cron,cron_name:formio.ir_cron_formio_version_github_tag_check_and_register
 #: model:ir.cron,name:formio.ir_cron_formio_version_github_tag_check_and_register
 msgid "Forms: Check and register new Versions (GitHub tags)"
-msgstr "Forms: Verifique e registre novas versões (tags GitHub)"
+msgstr "Form.io: verifique e registre novas versões (tags GitHub)"
 
 #. module: formio
 #: code:addons/formio/models/formio_form.py:513
@@ -983,7 +961,7 @@ msgstr "Token de acesso pessoal do GitHub"
 #. module: formio
 #: model:ir.ui.menu,name:formio.menu_formio_version_github_tag
 msgid "GitHub releases (tags)"
-msgstr ""
+msgstr "Lançamentos do GitHub (tags)"
 
 #. module: formio
 #: selection:ir.actions.act_window.view,view_mode:0
@@ -1019,7 +997,7 @@ msgstr "Horas"
 #: model:ir.model.fields,field_description:formio.field_formio_version_github_tag__id
 #: model:ir.model.fields,field_description:formio.field_formio_version_github_tag_available__id
 msgid "ID"
-msgstr ""
+msgstr "Id."
 
 #. module: formio
 #: model_terms:ir.ui.view,arch_db:formio.view_formio_form_kanban
@@ -1191,8 +1169,8 @@ msgstr "Vincule o formulário ao parceiro apropriado"
 
 #. module: formio
 #: model:ir.model.fields,help:formio.field_formio_builder__formio_version_id
-msgid "Loads the specific formio.js Javascript API/libraries version (sourcecode: https://github.com/formio/formio.js)"
-msgstr "Carrega a versão específica da API/bibliotecas formio.js Javascript (sourcecode: https://github.com/formio/formio.js)"
+msgid "Loads the specific formio Javascript API/libraries version (sourcecode: \\https://github.com/formio/formio.js)"
+msgstr "Carrega a versão específica da API/bibliotecas do formio Javascript (código fonte: \\https://github.com/formio/formio.js)"
 
 #. module: formio
 #: model:ir.model.fields,field_description:formio.field_formio_builder__message_main_attachment_id
@@ -1262,7 +1240,7 @@ msgstr "Nome"
 #: model:ir.model.fields,field_description:formio.field_formio_builder__activity_date_deadline
 #: model:ir.model.fields,field_description:formio.field_formio_form__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr "Prazo Final para Próxima Atividade"
+msgstr "Prazo final para Próxima Atividade"
 
 #. module: formio
 #: model:ir.model.fields,field_description:formio.field_formio_builder__activity_summary
@@ -1621,9 +1599,11 @@ msgid "Search"
 msgstr "Pesquisar"
 
 #. module: formio
-#: model_terms:ir.ui.view,arch_db:formio.view_formio_builder_form
-msgid "Select formio.js Options"
-msgstr "Selecione as opções de formio.js"
+#: model_terms:ir.ui.view,arch_db:formio.res_config_settings_view_form
+msgid "Select a default Form Builder JavaScript Options Template.<br/>\n"
+"                            It's contents, the Form Builder JavaScript Options, shall be shown below."
+msgstr "Selecione um modelo padrão de opções de JavaScript do criador de formulários.<br/>\n"
+"                            Seu conteúdo, as opções JavaScript do Form.io Builder, será mostrado a seguir."
 
 #. module: formio
 #: model_terms:ir.ui.view,arch_db:formio.view_formio_builder_form
@@ -2032,14 +2012,14 @@ msgstr "Histórico de Comunicação do Site"
 
 #. module: formio
 #: model_terms:ir.ui.view,arch_db:formio.res_config_settings_view_form
-msgid "When adding a new Form Builder, use this formio.js client/library version."
-msgstr "Ao adicionar um novo Form Builder, use esta versão cliente/biblioteca formio.js"
+msgid "When adding a new Form Builder, use this formio client/library version."
+msgstr "Ao adicionar um novo Form Builder, use esta versão cliente/biblioteca Form.io"
 
 #. module: formio
 #: model:ir.model.fields,field_description:formio.field_formio_builder__wizard
 #: model_terms:ir.ui.view,arch_db:formio.view_formio_builder_search
 msgid "Wizard"
-msgstr "Assistente"
+msgstr "Visão em Páginas"
 
 #. module: formio
 #: code:addons/formio/models/formio_builder.py:343
@@ -2100,7 +2080,7 @@ msgstr ""
 #. module: formio
 #: model_terms:ir.ui.view,arch_db:formio.view_formio_builder_formio
 msgid "formio Builder"
-msgstr ""
+msgstr "Construtor de Formulários"
 
 #. module: formio
 #: model:ir.model.fields,field_description:formio.field_res_config_settings__formio_default_builder_js_options
@@ -2125,13 +2105,6 @@ msgstr ""
 #. module: formio
 #: model_terms:ir.ui.view,arch_db:formio.view_formio_form_formio
 msgid "formio Form"
-msgstr ""
-
-#. module: formio
-#. openerp-web
-#: code:addons/formio/static/src/xml/formio.xml:20
-#, python-format
-msgid "formio JS version:"
 msgstr ""
 
 #. module: formio
@@ -2184,6 +2157,13 @@ msgid "formio version"
 msgstr "Versão Formio"
 
 #. module: formio
+#. openerp-web
+#: code:addons/formio/static/src/xml/formio.xml:20
+#, python-format
+msgid "formio.js version:"
+msgstr "Versão formio.js:"
+
+#. module: formio
 #: model_terms:ir.ui.view,arch_db:formio.res_config_settings_view_form
 #: model_terms:ir.ui.view,arch_db:formio.view_formio_builder_form
 msgid "https://github.com/formio/formio.js/blob/master/src/components/file/editForm/File.edit.file.js"
@@ -2205,6 +2185,11 @@ msgstr "não é obrigatório, mas pode obter um limite de taxa mais alto.\n"
 #: selection:formio.version.asset,type:0
 msgid "js"
 msgstr ""
+
+#. module: formio
+#: selection:formio.version.asset,type:0
+msgid "license"
+msgstr "licença"
 
 #. module: formio
 #: model_terms:ir.ui.view,arch_db:formio.view_formio_builder_form
@@ -2233,4 +2218,4 @@ msgstr ""
 #: code:addons/formio/models/formio_builder.py:259
 #, python-format
 msgid "{title} (state: {state}, version: {version})"
-msgstr "{title} (state: {state}, versão: {version})"
+msgstr "{title} (Status: {state}, Versão: {version})"
