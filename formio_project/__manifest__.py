@@ -4,7 +4,7 @@
     'version': '12.0.1.0.0',
     'license': 'LGPL-3',
     'author': 'MultidadosTI',
-    'website': 'www.multidadosti.com.br',
+    'website': 'www.multidados.tech',
     'category': 'Project',
     'contributors': [
         'Fernando Saeta <fernando.r.saeta@gmail.com>',
