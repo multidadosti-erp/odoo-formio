@@ -201,7 +201,7 @@ class Builder(models.Model):
 
         json.loads(data) refuses identifies with single quotes.Use
         ast.literal_eval() instead.
-        
+
         :param str schema: schema string
         :return str schema: schema as dictionary
         """
@@ -328,7 +328,7 @@ class Builder(models.Model):
     @api.returns('self', lambda value: value)
     def copy_as_new_version(self):
         """Get last version for builder-forms by traversing-up on parent_id"""
-        
+
         self.ensure_one()
         builder = self
 
