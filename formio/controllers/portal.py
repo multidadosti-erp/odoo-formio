@@ -10,9 +10,15 @@ from ..models.formio_builder import STATE_CURRENT
 
 class FormioCustomerPortal(CustomerPortal):
 
-    def _prepare_portal_layout_values(self):
+    def _get_default_formio_form_domain(self):
+        return [
+            ('user_id', '=', request.env.user.id),
+            ('builder_id.portal', '=', True)
+        ]
+
+    def _prepare_portal_layout_values(self, **kwargs):
         values = super(FormioCustomerPortal, self)._prepare_portal_layout_values()
-        domain = [('user_id', '=', request.env.user.id), ('builder_id.portal', '=', True)]
+        domain = self._get_default_formio_form_domain()
         values['form_count'] = request.env['formio.form'].search_count(domain)
         return values
 
@@ -37,13 +43,13 @@ class FormioCustomerPortal(CustomerPortal):
         # Forms
         res_model = kwargs.get('res_model')
         res_id = kwargs.get('res_id')
+        domain = self._get_default_formio_form_domain()
+
         if res_model and res_id:
-            domain = [
+            domain.extend([
                 ('res_model', '=', res_model),
-                ('res_id', '=', res_id),
-                ('user_id', '=', request.env.user.id),
-                ('builder_id.portal', '=', True)
-            ]
+                ('res_id', '=', res_id)
+            ])
             forms = request.env['formio.form'].search(domain)
             if forms:
                 values['res_model'] = res_model
@@ -51,7 +57,6 @@ class FormioCustomerPortal(CustomerPortal):
                 values['res_name'] = forms[0].res_id
                 values['form_count'] = len(forms)
         else:
-            domain = [('user_id', '=', request.env.user.id), ('builder_id.portal', '=', True)]
             values['form_count'] = request.env['formio.form'].search_count(domain)
         return values
 
@@ -75,16 +80,13 @@ class FormioCustomerPortal(CustomerPortal):
 
     @http.route(['/my/formio'], type='http', auth="user", website=True)
     def portal_forms(self, sortby=None, search=None, search_in='content',  **kwargs):
-        domain = [
-            ('user_id', '=', request.env.user.id),
-            ('portal_share', '=', True)
-        ]
+        domain = self._get_default_formio_form_domain()
         res_model = kwargs.get('res_model')
         res_id = kwargs.get('res_id')
         if res_model and res_id:
             domain.append(('res_model', '=', res_model))
             domain.append(('res_id', '=', res_id))
-        
+
         order = 'create_date DESC'
         forms = request.env['formio.form'].search(domain, order=order)
 
