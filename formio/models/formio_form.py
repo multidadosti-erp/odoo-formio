@@ -111,6 +111,12 @@ class Form(models.Model):
     allow_force_update_state = fields.Boolean("Allow force update State", compute='_compute_access')
     readonly_submission_data = fields.Boolean("Data is readonly", compute='_compute_access')
 
+    line_ids = fields.One2many(
+        'formio.form.line',
+        inverse_name='form_id',
+        string='Line Form',
+        ondelete='cascade')
+
     @api.model
     def default_get(self, fields):
         result = super(Form, self).default_get(fields)
@@ -121,12 +127,14 @@ class Form(models.Model):
     @api.model
     def create(self, vals):
         vals = self._prepare_create_vals(vals)
+        vals = self._extract_key_label_form_builder(vals)
         res = super(Form, self).create(vals)
         res._after_create(vals)
         return res
 
     @api.multi
     def write(self, vals):
+        vals = self._extract_key_label_form_builder(vals)
         res = super(Form, self).write(vals)
         self._after_write(vals)
         return res
@@ -167,6 +175,101 @@ class Form(models.Model):
 
     def _after_write(self, vals):
         self._process_api_components(vals)
+
+    def _extract_key_label_form_builder(self, vals):
+        """Metodo para Extrair os Campos do Formulário e atualizar
+           os Valores (Vals) para gravação.
+           Obs.: Somente no State == 'COMPLETE'
+
+        Args:
+            vals (dict): Dicionário com os valores para Gravação
+
+        Returns:
+            dict: Retorna o Dicionário Atualizado com os campos do formulário
+                  para Gravação
+        """
+        if 'state' in vals and 'submission_data' in vals and vals['state'] == 'COMPLETE':
+            schema = self.builder_id._decode_schema(self.builder_id.schema)
+            keys = self._extract_key_label(schema, [])
+            keys_values = self._write_key_label(keys, self._decode_data(vals['submission_data']))
+
+            if len(keys_values) > 0:
+                vals['line_ids'] = [(0, 0, line) for line in keys_values]
+        else:
+            vals['line_ids'] = [(5, 0, 0)]
+
+        return vals
+
+    def _write_key_label(self, keys, submission_data):
+        """ Metodo para Montar uma Lista com os Campos que
+            que são preenchido nos Formulários
+
+        Args:
+            keys (dict): Dicionário com os Campos do Form Builder
+            submission_data (dict): Dicionário com os Dados de
+                                    Preenchimento do Formulário
+
+        Returns:
+            list: Retorna uma lista de dicionário com os 'Keys' e o
+                  'submission_data' relacionados para gravação.
+        """
+        for key, val in submission_data.items():
+            for line in keys:
+                if key == line['key'] and 'values' in line:
+                    if line['values'] == '':
+                        line['value_label'] = val
+                        line['value_key'] = key
+
+                    else:
+                        for line_val in line['values']:
+                            if val == line_val['value']:
+                                line['value_label'] = line_val['label']
+                                line['value_key'] = line_val['value']
+                                break
+
+                    if line['key'] == 'submit':
+                        line['value_label'] = False
+
+                    line.pop('values')
+
+        # Retornando a lista limpa, somente com os dados q foram preenchidos
+        return [x for x in filter(lambda x: x.get('value_label') and x.get('value_label') != '', keys)] # noqa
+
+    def _extract_key_label(self, dct, keys):
+        """ Metodo para Extrair do Campos a Preencher do Form Builder
+
+        Args:
+            dct (dict): Dicionário JSON do Form Builder
+            keys (list): Lista de Dicionário para Preenchimento
+                        dos Campos e Valores
+
+        Returns:
+            list: Retorna Lista de dicionário com os Campos que serão
+                  preenchidos do Form Builder.
+        """
+        if type(dct) is list:
+            for line in dct:
+                if type(line) is dict:
+                    if 'columns' in line:
+                        keys = self._extract_key_label(line['columns'], keys)
+                    elif 'components' in line:
+                        keys = self._extract_key_label(line['components'], keys)
+                    else:
+                        # último nivel
+                        if 'label' in line and 'key' in line:
+                            keys.append(
+                                {'label': line['label'],
+                                 'key': line['key'],
+                                 'value_label': '',
+                                 'value_key': '',
+                                 'values': line['values'] if 'values' in line else ''})
+
+        elif type(dct) is dict:
+            for key, vals in dct.items():
+                if type(vals) is dict or type(vals) is list:
+                    keys = self._extract_key_label(vals, keys)
+
+        return keys
 
     def _process_api_components(self, vals):
         if vals.get('submission_data') and self.builder_id.component_partner_email:
@@ -237,12 +340,12 @@ class Form(models.Model):
 
             # public
             form.public_access = form._public_access()
-            
+
     def _public_access(self):
         if self.public_share and self.public_access_date_from:
             now = fields.Datetime.now()
             expire_on = self.public_access_date_from + self._interval_types[self.public_access_interval_type](self.public_access_interval_number)
-            
+
             if self.public_access_interval_number == 0:
                 return False
             elif self.public_access_date_from > now:
@@ -383,7 +486,7 @@ class Form(models.Model):
         self.public_share = self.builder_id.public
         self.public_access_interval_number = self.builder_id.public_access_interval_number
         self.public_access_interval_type = self.builder_id.public_access_interval_type
-        
+
         if self.builder_id.public:
             self.public_access_date_from = fields.Datetime.now()
 
