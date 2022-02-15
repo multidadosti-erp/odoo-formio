@@ -544,7 +544,7 @@ class Form(models.Model):
         }
 
     @api.model
-    def get_form(self, uuid, mode):
+    def get_form(self, uuid, mode, **kwargs):
         """ Verifies access to form and return form or False. """
 
         if not self.env['formio.form'].check_access_rights(mode, False):
@@ -562,7 +562,9 @@ class Form(models.Model):
         # portal user
         if self.env.user.has_group('base.group_portal'):
             form = self.sudo().search([('uuid', '=', uuid)], limit=1)
-            if not form or not form.portal_share or form.user_id.id != self.env.user.id:
+            if not form or not form.portal_share:
+                return False
+            if kwargs.get('check_user', True) and form.user_id.id != self.env.user.id:
                 return False
         return form
 
