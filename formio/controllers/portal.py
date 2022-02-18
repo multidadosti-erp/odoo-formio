@@ -3,6 +3,7 @@
 
 from odoo import http
 from odoo.http import request
+from odoo.exceptions import AccessError
 from odoo.addons.portal.controllers.portal import CustomerPortal
 
 from ..models.formio_builder import STATE_CURRENT
@@ -19,21 +20,28 @@ class FormioCustomerPortal(CustomerPortal):
     def _prepare_portal_layout_values(self, **kwargs):
         values = super(FormioCustomerPortal, self)._prepare_portal_layout_values()
         domain = self._get_default_formio_form_domain()
-        values['form_count'] = request.env['formio.form'].search_count(domain)
+        try:
+            values['form_count'] = request.env['formio.form'].search_count(domain)
+        except AccessError:
+            values['form_count'] = 0
         return values
 
     def _formio_form_prepare_portal_layout_values(self, **kwargs):
         values = super(FormioCustomerPortal, self)._prepare_portal_layout_values()
 
-        # TODO create model (class)method for this?
-        domain = [
-            ('portal', '=', True),
-            ('formio_res_model_id', '=', False),
-            ('state', '=', STATE_CURRENT)
-        ]
-        # TODO order by sequence?
-        order = 'name ASC'
-        builders_create_form = request.env['formio.builder'].search(domain, order=order)
+        if request.env['formio.builder'].check_access('read'):
+            # TODO create model (class)method for this?
+            domain = [
+                ('portal', '=', True),
+                ('formio_res_model_id', '=', False),
+                ('state', '=', STATE_CURRENT)
+            ]
+            # TODO order by sequence?
+            order = 'name ASC'
+            builders_create_form = request.env['formio.builder'].search(domain, order=order)
+        else:
+            builders_create_form = request.env['formio.builder']
+
         values.update({
             'builders_create_form': builders_create_form,
             'page_name': 'formio',
@@ -41,23 +49,27 @@ class FormioCustomerPortal(CustomerPortal):
         })
 
         # Forms
-        res_model = kwargs.get('res_model')
-        res_id = kwargs.get('res_id')
-        domain = self._get_default_formio_form_domain()
+        if request.env['formio.form'].check_access('read'):
+            res_model = kwargs.get('res_model')
+            res_id = kwargs.get('res_id')
+            domain = self._get_default_formio_form_domain()
 
-        if res_model and res_id:
-            domain.extend([
-                ('res_model', '=', res_model),
-                ('res_id', '=', res_id)
-            ])
-            forms = request.env['formio.form'].search(domain)
-            if forms:
-                values['res_model'] = res_model
-                values['res_id'] = res_id
-                values['res_name'] = forms[0].res_id
-                values['form_count'] = len(forms)
+            if res_model and res_id:
+                domain.extend([
+                    ('res_model', '=', res_model),
+                    ('res_id', '=', res_id)
+                ])
+                forms = request.env['formio.form'].search(domain)
+                if forms:
+                    values['res_model'] = res_model
+                    values['res_id'] = res_id
+                    values['res_name'] = forms[0].res_id
+                    values['form_count'] = len(forms)
+            else:
+                values['form_count'] = request.env['formio.form'].search_count(domain)
         else:
-            values['form_count'] = request.env['formio.form'].search_count(domain)
+            values['form_count'] = 0
+
         return values
 
     def _formio_form_get_page_view_values(self, form, **kwargs):
@@ -88,7 +100,11 @@ class FormioCustomerPortal(CustomerPortal):
             domain.append(('res_id', '=', res_id))
 
         order = 'create_date DESC'
-        forms = request.env['formio.form'].search(domain, order=order)
+
+        try:
+            forms = request.env['formio.form'].search(domain, order=order)
+        except AccessError:
+            forms = request.env['formio.form']
 
         values = self._formio_form_prepare_portal_layout_values(**kwargs)
         values['forms'] = forms
