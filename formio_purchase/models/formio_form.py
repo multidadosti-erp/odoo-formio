@@ -8,7 +8,13 @@ from odoo.addons.formio.models.formio_builder import STATE_CURRENT as BUILDER_ST
 class Form(models.Model):
     _inherit = 'formio.form'
 
-    purchase_order_id = fields.Many2one('purchase.order', string='Purchase Order', readonly=True)
+    purchase_order_id = fields.Many2one(
+        'purchase.order',
+        string='Purchase Order',
+        readonly=True,
+        index=True,
+        ondelete='cascade'
+    )
 
     def _prepare_create_vals(self, vals):
         vals = super(Form, self)._prepare_create_vals(vals)
