@@ -257,12 +257,16 @@ class Form(models.Model):
                     else:
                         # último nivel
                         if 'label' in line and 'key' in line:
-                            keys.append(
-                                {'label': line['label'],
-                                 'key': line['key'],
-                                 'value_label': '',
-                                 'value_key': '',
-                                 'values': line['values'] if 'values' in line else ''})
+                            # Assinatura não pode Gravar
+                            isSignature = 'type' in line and line['type'] == 'signature'
+
+                            if not isSignature:
+                                keys.append(
+                                    {'label': line['label'],
+                                    'key': line['key'],
+                                    'value_label': '',
+                                    'value_key': '',
+                                    'values': line['values'] if 'values' in line else ''})
 
         elif type(dct) is dict:
             for key, vals in dct.items():
