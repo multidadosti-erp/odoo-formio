@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record id="formio_res_model_service_contract" model="formio.res.model">
+            <field name="ir_model_id" ref="service_contract_management.model_service_contract"/>
+            <field name="module_dependency">True</field>
+        </record>
+    </data>
+</odoo>

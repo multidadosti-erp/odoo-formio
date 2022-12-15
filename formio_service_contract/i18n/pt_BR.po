@@ -1,0 +1,48 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* formio_service_contract
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-15 19:33+0000\n"
+"PO-Revision-Date: 2022-12-15 19:33+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: formio_service_contract
+#: model:ir.model.fields,field_description:formio_service_contract.field_formio_form__contract_id
+msgid "Contract"
+msgstr "Contrato"
+
+#. module: formio_service_contract
+#: model:ir.model,name:formio_service_contract.model_formio_form
+msgid "Form"
+msgstr "Formulario"
+
+#. module: formio_service_contract
+#: model:ir.model.fields,field_description:formio_service_contract.field_service_contract__formio_forms_count
+msgid "Formio Forms Count"
+msgstr "Quantidade"
+
+#. module: formio_service_contract
+#: model:ir.model.fields,field_description:formio_service_contract.field_service_contract__formio_this_model_id
+msgid "Formio This Model"
+msgstr "Este Modelo"
+
+#. module: formio_service_contract
+#: model:ir.model.fields,field_description:formio_service_contract.field_service_contract__formio_forms
+#: model_terms:ir.ui.view,arch_db:formio_service_contract.view_order_form_formio_contract
+msgid "Forms"
+msgstr "Formulários"
+
+#. module: formio_service_contract
+#: model:ir.model,name:formio_service_contract.model_service_contract
+msgid "Service Contract Model"
+msgstr "Modelo do Contrato de Serviço"
+
