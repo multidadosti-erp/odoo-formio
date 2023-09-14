@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* formio_project
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-03 19:29+0000\n"
+"PO-Revision-Date: 2023-07-03 19:29+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: formio_project
+#: model:ir.model,name:formio_project.model_formio_form
+msgid "Form"
+msgstr "Formulário"
+
+#. module: formio_project
+#: model:ir.model.fields,field_description:formio_project.field_project_project__formio_forms_count
+msgid "Formio Forms Count"
+msgstr "Quantidade"
+
+#. module: formio_project
+#: model:ir.model.fields,field_description:formio_project.field_project_project__formio_this_model_id
+msgid "Formio This Model"
+msgstr "Este Modelo"
+
+#. module: formio_project
+#: model:ir.model.fields,field_description:formio_project.field_project_project__formio_forms
+#: model_terms:ir.ui.view,arch_db:formio_project.view_order_form_formio_project
+msgid "Forms"
+msgstr "Formulários"
+
+#. module: formio_project
+#: model:ir.model,name:formio_project.model_project_project
+#: model:ir.model.fields,field_description:formio_project.field_formio_form__project_id
+msgid "Project"
+msgstr "Projeto"
