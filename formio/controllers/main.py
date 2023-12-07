@@ -7,6 +7,7 @@ import logging
 
 from odoo import http, fields
 from odoo.http import request
+from datetime import date, datetime
 
 from ..models.formio_builder import \
     STATE_CURRENT as BUILDER_STATE_CURRENT, STATE_OBSOLETE as BUILDER_STATE_OBSOLETE
@@ -67,10 +68,10 @@ class FormioController(http.Controller):
     def builder_save(self, builder, **post):
         if not request.env.user.has_group('formio.group_formio_admin'):
             return
-        
+
         if not 'builder_id' in post or int(post['builder_id']) != builder.id:
             return
-        
+
         schema = json.dumps(post['schema'])
         builder.write({'schema': schema})
 
@@ -144,6 +145,14 @@ class FormioController(http.Controller):
             etl_odoo_data = form.sudo()._etl_odoo_data()
             submission_data.update(etl_odoo_data)
 
+        # Trata Campo Date time ou Date para evitar erro do Odoo na
+        # json.dumps
+        for items in submission_data:
+            if isinstance(submission_data[items], datetime):
+                submission_data[items] = submission_data[items].strftime('%Y-%m-%dT%H:%M:%S')
+            elif isinstance(submission_data[items], date):
+                submission_data[items] = submission_data[items].strftime('%Y-%m-%d')
+
         return json.dumps(submission_data)
 
     @http.route('/formio/form/<string:uuid>/submit', type='json', auth="user", methods=['POST'], website=True)
@@ -154,7 +163,7 @@ class FormioController(http.Controller):
         if not form:
             # TODO raise or set exception (in JSON resonse) ?
             return
-        
+
         vals = {
             'submission_data': json.dumps(post['data']),
             'submission_user_id': request.env.user.id,
@@ -190,7 +199,7 @@ class FormioController(http.Controller):
         form = self._get_form(uuid, 'read')
         if not form:
             return
-        
+
         args = request.httprequest.args
 
         model = args.get('model')
