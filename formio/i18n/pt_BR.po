@@ -1277,7 +1277,7 @@ msgstr "Não Assistente"
 #: model:ir.model.fields,field_description:formio.field_formio_builder__message_needaction_counter
 #: model:ir.model.fields,field_description:formio.field_formio_form__message_needaction_counter
 msgid "Number of Actions"
-msgstr "Número de ações"
+msgstr "Número de Ações"
 
 #. module: formio
 #: model:ir.model.fields,field_description:formio.field_formio_builder__message_has_error_counter
