@@ -33,10 +33,14 @@ class StockPicking(models.Model):
         # Simpler to maintain and less risk with extending, than
         # computed field(s) in the formio.form object.
         res = super(StockPicking, self).write(vals)
-        if self.formio_forms:
-            form_vals = self._prepare_write_formio_form_vals(vals)
+
+        for stock in self.filtered(lambda r: r.formio_forms):
+
+            form_vals = stock._prepare_write_formio_form_vals(vals)
+
             if form_vals:
-                self.formio_forms.write(form_vals)
+                stock.formio_forms.write(form_vals)
+
         return res
 
     def _prepare_write_formio_form_vals(self, vals):
