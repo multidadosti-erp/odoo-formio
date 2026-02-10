@@ -16,9 +16,9 @@ class SaleOrder(models.Model):
             r.formio_forms_count = len(r.formio_forms)
 
     def _compute_formio_this_model_id(self):
-        self.ensure_one()
         model_id = self.env.ref('sale.model_sale_order').id
-        self.formio_this_model_id = model_id
+        for rec in self:
+            rec.formio_this_model_id = model_id
 
     @api.multi
     def write(self, vals):
