@@ -17,8 +17,28 @@ class FormioCustomerPortal(CustomerPortal):
             ('builder_id.portal', '=', True)
         ]
 
-    def _prepare_portal_layout_values(self, **kwargs):
-        values = super(FormioCustomerPortal, self)._prepare_portal_layout_values()
+    def _prepare_portal_layout_values_accesses(self):
+        values = super(FormioCustomerPortal, self)._prepare_portal_layout_values_accesses()
+        user = request.env.user
+
+        formio_access = (
+            user.has_group('base.group_portal')
+            or user.has_group('formio.group_formio_user')
+        )
+        if formio_access:
+            formio_access = user.portal_access_formio != "no_access"
+
+        values["access_formio"] = formio_access
+        return values
+
+    def _prepare_portal_layout_values(self, values={}, **kwargs):
+        values = super(FormioCustomerPortal, self)._prepare_portal_layout_values(values)
+
+        # Retorna os valores obtidos pela função, sem incluir as informações
+        # de projetos e tarefas, quando o usuário não possui acesso a eles.
+        if values.get("access_formio") is False:
+            return values
+
         domain = self._get_default_formio_form_domain()
         try:
             values['form_count'] = request.env['formio.form'].search_count(domain)
@@ -27,7 +47,7 @@ class FormioCustomerPortal(CustomerPortal):
         return values
 
     def _formio_form_prepare_portal_layout_values(self, **kwargs):
-        values = super(FormioCustomerPortal, self)._prepare_portal_layout_values()
+        values = super(FormioCustomerPortal, self)._prepare_portal_layout_values(values={})
 
         if request.env['formio.builder'].check_access('read'):
             # TODO create model (class)method for this?
@@ -107,6 +127,10 @@ class FormioCustomerPortal(CustomerPortal):
             forms = request.env['formio.form']
 
         values = self._formio_form_prepare_portal_layout_values(**kwargs)
+
+        if values.get("access_formio") is False:
+            return self.redirect_not_allowed_app(_("Forms"))
+
         values['forms'] = forms
         return request.render("formio.portal_my_formio", values)
 
