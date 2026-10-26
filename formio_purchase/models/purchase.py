@@ -7,9 +7,12 @@ from odoo import fields, models
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
-    formio_forms = fields.One2many('formio.form', 'purchase_order_id', string='Forms')
+    formio_forms = fields.One2many(
+        'formio.form', 'purchase_order_id', string='Forms',
+        groups='formio.group_formio_user')
     formio_forms_count = fields.Integer(
-        compute='_compute_formio_forms_count', compute_sudo=True, string='Forms Count')
+        compute='_compute_formio_forms_count', compute_sudo=True, string='Forms Count',
+        groups='formio.group_formio_user')
     formio_this_model_id = fields.Many2one(
         'ir.model', compute_sudo=True, compute='_compute_formio_this_model_id')
 
@@ -18,18 +21,20 @@ class PurchaseOrder(models.Model):
             r.formio_forms_count = len(r.formio_forms)
 
     def _compute_formio_this_model_id(self):
-        self.ensure_one()
         model_id = self.env.ref('purchase.model_purchase_order').id
-        self.formio_this_model_id = model_id
+        for rec in self:
+            rec.formio_this_model_id = model_id
 
     def write(self, vals):
         # Simpler to maintain and less risk with extending, than
         # computed field(s) in the formio.form object.
         res = super(PurchaseOrder, self).write(vals)
-        if self.formio_forms:
-            form_vals = self._prepare_write_formio_form_vals(vals)
-            if form_vals:
-                self.formio_forms.write(form_vals)
+        if vals.get('name'):
+            for rec in self:
+                form_vals = rec._prepare_write_formio_form_vals(vals)
+                if form_vals:
+                    # Synchronize metadata after checking access on the purchase order.
+                    rec.sudo().formio_forms.write(form_vals)
         return res
 
     def _prepare_write_formio_form_vals(self, vals):
