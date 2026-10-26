@@ -21,5 +21,9 @@
     'images': [
         'static/description/banner.gif',
     ],
-    'description': ''
+    'description': """
+Form fields and counters are restricted to Forms users. Purchase users do not
+need access to forms to read or update orders. Renaming an order synchronizes
+the linked forms' record names without granting access to their contents.
+"""
 }
