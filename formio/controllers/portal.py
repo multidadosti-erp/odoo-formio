@@ -26,7 +26,7 @@ class FormioCustomerPortal(CustomerPortal):
             or user.has_group('formio.group_formio_user')
         )
         if formio_access:
-            formio_access = user.portal_access_formio != "no_access"
+            formio_access = user.portal_access_forms != "no_access"
 
         values["access_formio"] = formio_access
         return values
